@@ -3,7 +3,7 @@ This file corresponds to the first graded lab of 2XC3.
 Feel free to modify and/or add functions to this file.
 """
 import random
-
+import time
 
 # Create a random list length "length" containing whole numbers between 0 and max_value inclusive
 def create_random_list(length, max_value):
@@ -33,11 +33,10 @@ def insertion_sort(L):
     for i in range(1, len(L)):
         insert(L, i)
 
-
 def insert(L, i):
     while i > 0:
-        if L[i] < L[i-1]:
-            swap(L, i-1, i)
+        if L[i] < L[i - 1]:
+            swap(L, i - 1, i)
             i -= 1
         else:
             return
@@ -49,8 +48,8 @@ def insert(L, i):
 def bubble_sort(L):
     for i in range(len(L)):
         for j in range(len(L) - 1):
-            if L[j] > L[j+1]:
-                swap(L, j, j+1)
+            if L[j] > L[j + 1]:
+                swap(L, j, j + 1)
 
 
 # ******************* Selection sort code *******************
@@ -64,7 +63,21 @@ def selection_sort(L):
 
 def find_min_index(L, n):
     min_index = n
-    for i in range(n+1, len(L)):
+    for i in range(n + 1, len(L)):
         if L[i] < L[min_index]:
             min_index = i
     return min_index
+
+
+def multiple_runs(n):
+    total_time = 0
+    for i in range(n):
+        start = time.time()
+        # set sort method (insertion, bubble, selection) just replace function call below
+        bubble_sort(create_random_list(0, 1000))
+        end = time.time()
+        total_time += (end - start)
+    print("total elapsed time: ", total_time, "\naverage time:", total_time/n)
+
+
+multiple_runs(100)
