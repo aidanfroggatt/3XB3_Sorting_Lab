@@ -5,6 +5,7 @@ Feel free to modify and/or add functions to this file.
 import random
 import time
 
+
 # Create a random list length "length" containing whole numbers between 0 and max_value inclusive
 def create_random_list(length, max_value):
     return [random.randint(0, max_value) for _ in range(length)]
@@ -68,6 +69,7 @@ def bubble_sort(L):
                 swap(L, j, j + 1)
 
 
+# BUBBLE SORT 2
 def bubble_sort2(L):
     n = len(L)
     for i in range(n):
@@ -89,6 +91,7 @@ def bubble_sort2(L):
         L[position_to_insert] = temp
     return L
 
+
 # ******************* Selection sort code *******************
 
 # Traditional Selection sort
@@ -96,6 +99,39 @@ def selection_sort(L):
     for i in range(len(L)):
         min_index = find_min_index(L, i)
         swap(L, i, min_index)
+
+
+# SELECTION SORT 2
+def selection_sort2(L):
+    left = 0
+    right = len(L) - 1
+
+    while left < right:
+        min_index = left
+        max_index = left
+
+        # Find the minimum and maximum and their indices
+        for i in range(left, right + 1):
+            if L[i] < L[min_index]:
+                min_index = i
+            if L[i] > L[max_index]:
+                max_index = i
+
+        # Swap the minimum with the first position
+        L[left], L[min_index] = L[min_index], L[left]
+
+        # Check if the max was at the left boundary before the swap
+        # If yes, then it is now at min_index
+        if max_index == left:
+            max_index = min_index
+
+        # Swap the maximum with the last position
+        L[right], L[max_index] = L[max_index], L[right]
+
+        left += 1
+        right -= 1
+
+    return L
 
 
 def find_min_index(L, n):
@@ -116,7 +152,5 @@ def multiple_runs(n):
         total_time += (end - start)
     print("total elapsed time: ", total_time,
           "\nnumber of runs: ", n,
-          "\naverage time:", total_time/n)
+          "\naverage time:", total_time / n)
 
-
-multiple_runs(100)
