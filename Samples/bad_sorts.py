@@ -33,6 +33,22 @@ def insertion_sort(L):
     for i in range(1, len(L)):
         insert(L, i)
 
+
+# INSERTION SORT 2
+def insertion_sort2(L):
+    for i in range(1, len(L)):
+        current_value = L[i]
+        j = i - 1
+        # Move elements of L[0..i-1], that are greater than current_value,
+        # to one position ahead of their current position
+        while j >= 0 and current_value < L[j]:
+            L[j + 1] = L[j]
+            j -= 1
+        # Insert the current_value at the correct position
+        L[j + 1] = current_value
+    return L
+
+
 def insert(L, i):
     while i > 0:
         if L[i] < L[i - 1]:
@@ -51,6 +67,27 @@ def bubble_sort(L):
             if L[j] > L[j + 1]:
                 swap(L, j, j + 1)
 
+
+def bubble_sort2(L):
+    n = len(L)
+    for i in range(n):
+        # This will be the position where the largest number will be placed
+        position_to_insert = n - 1 - i
+        max_index = 0
+
+        # Find the largest number and its index
+        for j in range(1, position_to_insert + 1):
+            if L[j] > L[max_index]:
+                max_index = j
+
+        # Shift elements to the left of position_to_insert and right of max_index by 1
+        temp = L[max_index]
+        for k in range(max_index, position_to_insert):
+            L[k] = L[k + 1]
+
+        # Place the largest number at position_to_insert
+        L[position_to_insert] = temp
+    return L
 
 # ******************* Selection sort code *******************
 
@@ -74,7 +111,7 @@ def multiple_runs(n):
     for i in range(n):
         start = time.time()
         # set sort method (insertion, bubble, selection) just replace function call below
-        bubble_sort(create_random_list(2000, 1000))
+        bubble_sort2(create_random_list(2000, 1000))
         end = time.time()
         total_time += (end - start)
     print("total elapsed time: ", total_time,
