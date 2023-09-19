@@ -74,10 +74,12 @@ def multiple_runs(n):
     for i in range(n):
         start = time.time()
         # set sort method (insertion, bubble, selection) just replace function call below
-        bubble_sort(create_random_list(0, 1000))
+        bubble_sort(create_random_list(2000, 1000))
         end = time.time()
         total_time += (end - start)
-    print("total elapsed time: ", total_time, "\naverage time:", total_time/n)
+    print("total elapsed time: ", total_time,
+          "\nnumber of runs: ", n,
+          "\naverage time:", total_time/n)
 
 
 multiple_runs(100)
