@@ -9,6 +9,9 @@ In contains traditional implementations for:
 
 Author: Vincent Maccio
 """
+import random
+import time
+
 
 # ************ Quick Sort ************
 def quicksort(L):
@@ -28,6 +31,7 @@ def quicksort_copy(L):
         else:
             right.append(num)
     return quicksort_copy(left) + [pivot] + quicksort_copy(right)
+
 
 # *************************************
 
@@ -68,6 +72,7 @@ def merge(left, right):
                 j += 1
     return L
 
+
 # *************************************
 
 # ************* Heap Sort *************
@@ -76,6 +81,7 @@ def heapsort(L):
     heap = Heap(L)
     for _ in range(len(L)):
         heap.extract_max()
+
 
 class Heap:
     length = 0
@@ -145,5 +151,23 @@ class Heap:
             whitespace = whitespace // 2
         return s
 
+
 # *************************************
-    
+def create_random_list(length, max_value):
+    return [random.randint(0, max_value) for _ in range(length)]
+
+
+def multiple_runs(n):
+    total_time = 0
+    for i in range(n):
+        start = time.time()
+        # set sort method (insertion, bubble, selection) just replace function call below
+        mergesort(create_random_list(3000, 1000))
+        end = time.time()
+        total_time += (end - start)
+    print("total elapsed time: ", total_time,
+          "\nnumber of runs: ", n,
+          "\naverage time:", total_time / n)
+
+
+multiple_runs(1000)
