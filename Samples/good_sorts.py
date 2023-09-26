@@ -191,6 +191,20 @@ class Heap:
 
 
 # *************************************
+def insertion_sort(L):
+    for i in range(1, len(L)):
+        insert(L, i)
+
+
+def insert(L, i):
+    while i > 0:
+        if L[i] < L[i - 1]:
+            swap(L, i - 1, i)
+            i -= 1
+        else:
+            return
+
+
 def create_random_list(length, max_value):
     return [random.randint(0, max_value) for _ in range(length)]
 
@@ -215,7 +229,7 @@ def multiple_runs(n):
         L = create_random_list(1000, 1000)
         start = time.time()
         # set sort method (insertion, bubble, selection) just replace function call below
-        bottom_up_mergesort(L)
+        (L)
         end = time.time()
         total_time += (end - start)
     print("total elapsed time: ", total_time,
