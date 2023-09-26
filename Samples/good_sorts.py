@@ -157,12 +157,22 @@ def create_random_list(length, max_value):
     return [random.randint(0, max_value) for _ in range(length)]
 
 
+def create_near_sorted_list(length, max_value, swaps):
+    L = create_random_list(length, max_value)
+    L.sort()
+    for _ in range(swaps):
+        r1 = random.randint(0, length - 1)
+        r2 = random.randint(0, length - 1)
+        swap(L, r1, r2)
+    return L
+
+
 def multiple_runs(n):
     total_time = 0
     for i in range(n):
         start = time.time()
         # set sort method (insertion, bubble, selection) just replace function call below
-        mergesort(create_random_list(3000, 1000))
+        heapsort(create_near_sorted_list(1000, 1000, 0))
         end = time.time()
         total_time += (end - start)
     print("total elapsed time: ", total_time,
@@ -170,4 +180,4 @@ def multiple_runs(n):
           "\naverage time:", total_time / n)
 
 
-multiple_runs(1000)
+multiple_runs(100)
