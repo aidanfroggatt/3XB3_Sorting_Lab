@@ -14,6 +14,31 @@ import time
 
 
 # ************ Quick Sort ************
+def dual_quicksort_call(L):
+    copy = quicksort_copy(L)
+    for i in range(len(L)):
+        L[i] = copy[i]
+
+
+def dual_quicksort(L):
+    if len(L) < 3:
+        return sorted(L)
+
+    # Choose two pivots (let's say the first and second elements)
+    pivot1, pivot2 = sorted([L[0], L[1]])
+
+    left, middle, right = [], [], []
+    for num in L[2:]:
+        if num < pivot1:
+            left.append(num)
+        elif num > pivot2:
+            right.append(num)
+        else:
+            middle.append(num)
+
+    return dual_quicksort(left) + [pivot1] + middle + [pivot2] + dual_quicksort(right)
+
+
 def quicksort(L):
     copy = quicksort_copy(L)
     for i in range(len(L)):
@@ -174,9 +199,10 @@ def swap(L, i, j):
 def multiple_runs(n):
     total_time = 0
     for i in range(n):
+        L = create_random_list(1000, 1000)
         start = time.time()
         # set sort method (insertion, bubble, selection) just replace function call below
-        quicksort(create_near_sorted_list(1000, 1000, 0))
+        dual_quicksort_call(L)
         end = time.time()
         total_time += (end - start)
     print("total elapsed time: ", total_time,
