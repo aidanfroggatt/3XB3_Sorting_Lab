@@ -167,12 +167,16 @@ def create_near_sorted_list(length, max_value, swaps):
     return L
 
 
+def swap(L, i, j):
+    L[i], L[j] = L[j], L[i]
+
+
 def multiple_runs(n):
     total_time = 0
     for i in range(n):
         start = time.time()
         # set sort method (insertion, bubble, selection) just replace function call below
-        heapsort(create_near_sorted_list(1000, 1000, 0))
+        quicksort(create_near_sorted_list(1000, 1000, 0))
         end = time.time()
         total_time += (end - start)
     print("total elapsed time: ", total_time,
