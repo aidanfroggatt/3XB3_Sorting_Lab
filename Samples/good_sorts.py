@@ -63,6 +63,19 @@ def quicksort_copy(L):
 
 # ************ Merge Sort *************
 
+def bottom_up_mergesort(L):
+    n = len(L)
+    size = 1
+    while size < n:
+        for i in range(0, n, 2*size):
+            left = L[i:i+size]
+            right = L[i+size:i+2*size]
+            merged = merge(left, right)
+            for j, item in enumerate(merged):
+                L[i+j] = item
+        size *= 2
+
+
 def mergesort(L):
     if len(L) <= 1:
         return
@@ -202,7 +215,7 @@ def multiple_runs(n):
         L = create_random_list(1000, 1000)
         start = time.time()
         # set sort method (insertion, bubble, selection) just replace function call below
-        dual_quicksort_call(L)
+        bottom_up_mergesort(L)
         end = time.time()
         total_time += (end - start)
     print("total elapsed time: ", total_time,
