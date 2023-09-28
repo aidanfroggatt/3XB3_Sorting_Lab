@@ -226,10 +226,10 @@ def swap(L, i, j):
 def multiple_runs(n):
     total_time = 0
     for i in range(n):
-        L = create_random_list(1000, 1000)
+        L = create_random_list(200, 1000)
         start = time.time()
         # set sort method (insertion, bubble, selection) just replace function call below
-        (L)
+        mergesort(L)
         end = time.time()
         total_time += (end - start)
     print("total elapsed time: ", total_time,
